@@ -11,14 +11,14 @@ namespace VendorTracker
         public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-                .SetBaseParth(env.ContentRootPath)
+                .SetBasePath(env.ContentRootPath)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; }
 
-        public void ConfigureServices(IServiceColelction services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
         }
@@ -30,7 +30,7 @@ namespace VendorTracker
 
             app.UseEndpoints(routes =>
             {
-                routes.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id}");
+                routes.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
 
             app.Run(async (context) =>
