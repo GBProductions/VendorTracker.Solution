@@ -17,9 +17,9 @@ _Bakery Tracker._
 * _Navigate to the top level of the repository with the command `cd Tracker.Solution`_
 * _Navigate into Bakery with git command `cd VendorTracker`_
 * _Build project with git command `dotnet build`_
-* _Navigate to Test folder with git comamnds `cd ..` and then `cd Bakery.Tests`_ 
+* _Navigate to Test folder with git comamnds `cd ..` and then `cd VendorTracker.Tests`_ 
 * _To check if tests pass, run git command `dotnet test`_
-* _If tests pass, navigate back to Bakery.cs with git command `cd ..` and then `cd Bakery`_
+* _If tests pass, navigate back to Bakery.cs with git command `cd ..` and then `cd VendorTracker`_
 * _To run program, run git command `dotnet run`_
  
 
