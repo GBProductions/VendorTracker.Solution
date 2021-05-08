@@ -9,9 +9,9 @@ namespace VendorTracker.Controllers
         {
             return View();
         }
-        
-        [HttpGet("/vendors")]
-        public ActionResult Index()
+
+        [HttpGet("/vendors/new")]
+        public ActionResult Form()
         {
             return View();
         }
