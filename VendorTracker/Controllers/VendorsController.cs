@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using VendorTracker.Models;
 
 namespace VendorTracker.Controllers
 {
@@ -11,7 +12,7 @@ namespace VendorTracker.Controllers
         }
 
         [HttpGet("/vendors/new")]
-        public ActionResult Form()
+        public ActionResult New()
         {
             return View();
         }
