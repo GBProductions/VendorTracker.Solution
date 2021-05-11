@@ -26,5 +26,12 @@ namespace VendorTracker.Controllers
         Vendor myVendor = new Vendor(name, description);
         return RedirectToAction("Index");
     }
+    
+    [HttpPost("/vendors/delete")]
+    public ActionResult DeleteAll()
+    {
+        Vendor.ClearAll();
+        return View();
+    }
   }
 }
