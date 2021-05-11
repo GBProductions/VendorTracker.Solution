@@ -1,29 +1,30 @@
 using Microsoft.AspNetCore.Mvc;
 using VendorTracker.Models;
+using System.Collections.Generic;
 
 namespace VendorTracker.Controllers
 {
   public class HomeController : Controller
   {
 
-    [Route("/")]
+    [HttpGet("/")]
     public ActionResult Index()
     {
-        Vendor starterVendor = new Vendor("Vendor", "Add first vendor to Vendor Tracker.");
-        return View(starterVendor);
+      List<Vendor> allVendors = Vendor.GetAll();
+      return View(allVendors);
     }
 
-    [Route("/vendors/new")]
+    [HttpGet("/vendors/new")]
     public ActionResult CreateForm()
     {
         return View();
     }
 
-    [Route("/vendors")]
+    [HttpPost("/vendors")]
     public ActionResult Create(string name, string description)
     {
         Vendor myVendor = new Vendor(name, description);
-        return View("Index", myVendor);
+        return RedirectToAction("Index");
     }
   }
 }
