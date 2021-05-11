@@ -1,0 +1,15 @@
+@using VendorTracker.Models;
+
+<h1>Vendor Tracker</h1>
+
+@if (Model.Count == 0)
+{
+    <p>There are no vendors in the list.</p>
+}
+<ul>
+    @foreach (Vendor vendor in Model)
+    {
+        <li>@vendor.Name, @vendor.Description</li>
+    }
+</ul>
+<a href="/vendors/new">Add a new vendor.</a>
