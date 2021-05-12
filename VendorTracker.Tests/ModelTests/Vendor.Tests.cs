@@ -108,10 +108,10 @@ namespace VendorTracker.Tests
             Vendor newVendor = new Vendor(name, description);
 
             //Act
-            int result = 0;
+            int result = newVendor.Id;
 
             //Assert
-            AssemblyLoadEventArgs.AreEqual(1, result);
+            Assert.AreEqual(1, result);
         }
     }
 }
