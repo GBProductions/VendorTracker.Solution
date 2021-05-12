@@ -12,7 +12,7 @@ namespace VendorTracker.Tests
         {
             Order.ClearAll();
         }
-        
+
         [TestMethod]
         public void OrderConstructor_CreatesInstanceOfOrder_Order()
         {
@@ -46,6 +46,23 @@ namespace VendorTracker.Tests
 
             //Assert
             Assert.AreEqual(1, result);
+        }
+
+        [TestMethod]
+        public void GetAll_ReturnsAllOrderObjects_OrderList()
+        {
+            //Arrange
+            string name01 = "Bagel";
+            string name02 = "Bread";
+            Order newOrder1 = new Order(name01);
+            Order newOrder2 = new Order(name02);
+            List<Order> newList = new List<Order> { newOrder1, newOrder2};
+
+            //Act
+            List<Order> result = Order.GetAll();
+
+            //Assert
+            CollectionAssert.AreEqual(newList, result);
         }
 
     }
