@@ -15,7 +15,7 @@ namespace VendorTracker.Controllers
     }
 
     [HttpGet("/vendors/new")]
-    public ActionResult CreateForm()
+    public ActionResult New()
     {
         return View();
     }
