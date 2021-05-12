@@ -20,13 +20,6 @@ namespace VendorTracker.Controllers
         return View();
     }
 
-    [HttpGet("/vendors/{id}")]
-    public ActionResult Show(int id)
-    {
-      Vendor foundVendor = Vendor.Find(id);
-      return View(foundVendor);
-    }
-
     [HttpPost("/vendors")]
     public ActionResult Create(string name, string description)
     {
@@ -39,6 +32,13 @@ namespace VendorTracker.Controllers
     {
         Vendor.ClearAll();
         return View();
+    }
+
+    [HttpGet("/vendors/{id}")]
+    public ActionResult Show(int id)
+    {
+      Vendor foundVendor = Vendor.Find(id);
+      return View(foundVendor);
     }
   }
 }
