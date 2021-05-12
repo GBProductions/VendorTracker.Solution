@@ -126,11 +126,10 @@ namespace VendorTracker.Tests
             Vendor newVendor2 = new Vendor(name02, description02);
 
             //Act
-            Vendor result = new Vendor("Incorrect test item");
-            // Vedor result = Vendor.Find(2);
+            Vendor result = Vendor.Find(2);
 
             //Assert
-            Assert.AreEqual(2, result);
+            Assert.AreEqual(newVendor2, result);
         }
     }
 }
