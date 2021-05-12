@@ -99,6 +99,7 @@ namespace VendorTracker.Tests
             //Assert
             CollectionAssert.AreEqual(newList, result);
         }
+        
         [TestMethod]
         public void GetId_VendorInstantiateWithAnIdAndGetterReturns_Int()
         {
