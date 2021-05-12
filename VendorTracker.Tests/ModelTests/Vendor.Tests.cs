@@ -113,5 +113,24 @@ namespace VendorTracker.Tests
             //Assert
             Assert.AreEqual(1, result);
         }
+
+        [TestMethod]
+        public void Find_ReturnsCorrectVendor_Vendor()
+        {
+            //Arrange
+            string name01 = "Tender Greens";
+            string name02 = "Pizza Hut";
+            string description01 = "Serve Salad.";
+            string description02 = "Deliver Pizza.";
+            Vendor newVendor1 = new Vendor(name01, description01);
+            Vendor newVendor2 = new Vendor(name02, description02);
+
+            //Act
+            Vendor result = new Vendor("Incorrect test item");
+            // Vedor result = Vendor.Find(2);
+
+            //Assert
+            Assert.AreEqual(2, result);
+        }
     }
 }
