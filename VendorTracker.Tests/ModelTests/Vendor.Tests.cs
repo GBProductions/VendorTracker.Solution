@@ -99,5 +99,19 @@ namespace VendorTracker.Tests
             //Assert
             CollectionAssert.AreEqual(newList, result);
         }
+        [TestMethod]
+        public void GetId_VendorInstantiateWithAnIdAndGetterReturns_Int()
+        {
+            //Arrange
+            string name = "Tender Greens";
+            string description = "Serve Salad";
+            Vendor newVendor = new Vendor(name, description);
+
+            //Act
+            int result = 0;
+
+            //Assert
+            AssemblyLoadEventArgs.AreEqual(1, result);
+        }
     }
 }
