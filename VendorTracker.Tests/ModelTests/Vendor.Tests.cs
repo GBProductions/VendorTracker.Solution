@@ -37,5 +37,37 @@ namespace VendorTracker.Tests
             string result = newVendor.Description;
             Assert.AreEqual(description, result);
         }
+
+        [TestMethod]
+        public void SetDescription_SetDescription_String()
+        {
+            //Arrange
+            string description = "Sells pizzas.";
+            Vendor newVendor = new Vendor("test", description);
+
+            //Act
+            string updatedDescription = "Sells salad.";
+            newVendor.Description = updatedDescription;
+            string result = newVendor.Description;
+
+            //Assert
+            Assert.AreEqual(updatedDescription, result);
+        }
+
+        [TestMethod]
+        public void SetName_SetName_String()
+        {
+            //Arrange
+            string name = "Sells pizzas.";
+            Vendor newVendor = new Vendor(name, "test");
+
+            //Act
+            string updatedName = "Tender Greens";
+            newVendor.Name = updatedName;
+            string result = newVendor.Name;
+
+            //Assert
+            Assert.AreEqual(updatedName, result);
+        }
     }
 }
