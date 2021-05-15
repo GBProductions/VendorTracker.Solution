@@ -1,57 +1,34 @@
-using System.Collections.Generic;
-using System;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;  //done
 using VendorTracker.Models;
+using System.Collections.Generic;
 
 namespace VendorTracker.Controllers
 {
   public class OrdersController : Controller
   {
-    [HttpGet("/orders")]
-    public ActionResult Index()
+    [HttpGet("/vendors/{vendorId}/orders/new")]
+    public ActionResult New(int vendorId)
     {
-      List<Order> allOrders = Order.GetAll();
-      return View(allOrders);
+      Vendor vendor = Vendor.Find(vendorId);
+      return View(vendor);
     }
-
-    [HttpGet("/orders/new")]
-    public ActionResult New()
+    
+    [HttpPost("/orders/delete")]
+    public ActionResult DeleteAll()
     {
+        Vendor.ClearAll();
         return View();
     }
 
-    [HttpPost("/orders")]
-    public ActionResult Create(string orderName)
+    [HttpGet("/venders/{venderId}/orders/{orderId}")]
+    public ActionResult Show(int vendorId, int orderId)
     {
-        Order newOrder = new Order(orderName);
-        return RedirectToAction("Index");
-    }
-
-    [HttpGet("/orders/{id}")]
-    public ActionResult Show(int id)
-    {
+        Order order = Order.Find(orderId);
+        Vendor vendor = Vendor.Find(vendorId);
         Dictionary<string, object> model = new Dictionary<string, object>();
-        Order selectedOrder = Order.Find(id);
-        List<Vendor> orderVendors = selectedOrder.Vendors;
-        model.Add("order", selectedOrder);
-        model.Add("vendors", orderVendors);
+        model.Add("order", order);
+        model.Add("vendor", vendor);
         return View(model);
-    }
-
-
-    //This one creates new Vendors within a given Order, not new Orders:
-
-    [HttpPost("/orders/{orderId}vendors")]
-    public ActionResult Create(int orderId, string name, string description)
-    {
-        Dictionary<string, object> model = new Dictionary<string, object>();
-        Order foundOrder = Order.Find(orderId);
-        Vendor newVendor = new Vendor(name, description);
-        foundOrder.AddVendor(newVendor);
-        List<Vendor> orderVendors = foundOrder.Vendors;
-        model.Add("vendors", orderVendors);
-        model.Add("order", foundOrder);
-        return View("Show", model);
     }
   }
 }
