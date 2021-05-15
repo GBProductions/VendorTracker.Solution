@@ -1,8 +1,8 @@
 <h1>Vendor List Details: </h1>
 
-<p>@Model["vendor"].Name</p>
-<p>Order @Model["order"].Name</p>
+<h2>@Model["vendors"].Name</h2>
+<p>Order: @Model["order"].Name</p>
 
 
-<a href='/vendors/@Model["order"].Id/vendor/new'>Add another Vendor</a><br>
-<a href="/vendors">View all Orders</a>
+<a href='/orders/@Model["order"].Id/vendors/new'>Add another Vendor</a><br>
+<a href="/orders">View all Orders</a>
