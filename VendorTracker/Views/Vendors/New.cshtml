@@ -1,7 +1,8 @@
-<form action="/vendors" method="post">
-    <label for="name">Add a new vendor</label>
-    <input id="name" name="name" type="text">
-    <label for="description">Add a description</label>
-    <input id="description" name="description" type="text">
+<h1>Add a new vendor to @Model.Name</h1>
+    
+<form action="/orders/@Model.Id/vendors" method="post">
+    <input id="orderId" name="orderId" type="hidden" value="@Model.Id">
+    <label for="vendorDescription">Vendor Description</label>
+    <input id="vendorDescription" name="vendorDescription" type="text">
     <button type="submit">Submit</button>    
 </form>
