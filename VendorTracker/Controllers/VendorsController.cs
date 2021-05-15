@@ -6,10 +6,11 @@ namespace VendorTracker.Controllers
 {
   public class VendorsController : Controller
   {
-    [HttpGet("/vendors/new")]
-    public ActionResult New()
+    [HttpGet("/orders/{orderId}/vendors/new")]
+    public ActionResult New(int orderId)
     {
-        return View();
+      Order order = Order.Find(orderId);
+      return View(order);
     }
     
     [HttpPost("/vendors/delete")]
@@ -17,13 +18,6 @@ namespace VendorTracker.Controllers
     {
         Vendor.ClearAll();
         return View();
-    }
-
-    [HttpGet("/vendors/{id}")]
-    public ActionResult Show(int id)
-    {
-      Vendor foundVendor = Vendor.Find(id);
-      return View(foundVendor);
     }
 
     [HttpGet("/orders/{orderId}/vendors/{vendorId}")]
@@ -35,13 +29,6 @@ namespace VendorTracker.Controllers
         model.Add("vendor", vendor);
         model.Add("order", order);
         return View(model);
-    }
-
-    [HttpGet("/orders/{orderId}/vendors/new")]
-    public ActionResult New(int orderId)
-    {
-      Order order = Order.Find(orderId);
-      return View(order);
     }
   }
 }
