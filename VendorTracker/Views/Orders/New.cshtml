@@ -3,8 +3,12 @@
 <form action="/vendors/@Model.Id/orders" method="post">
     <input id="vendorId" name="vendorId" type="hidden" value="@Model.Id">
     <label for="name">Order Name</label>
-    <input id="name" name="name" type="text">
+    <input id="name" name="name" type="text"><br>
     <label for="description">Order Description</label>
-    <input id="description" name="description" type="text">
+    <input id="description" name="description" type="text"><br>
+    <label for="price">Price</label>
+    <input id="price" name="price" type="text"><br>
+    <label for="date">Date</label>
+    <input id="date" name="date" type="text"><br>
     <button type="submit">Submit</button>    
 </form>
