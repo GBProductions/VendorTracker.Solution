@@ -6,7 +6,7 @@ using System;
 namespace VendorTracker.Tests
 {
     [TestClass]
-    public class OrderTests : IDisposable
+    public class OrderTests : IDisposable 
     {
         public void Dispose()
         {
@@ -16,47 +16,65 @@ namespace VendorTracker.Tests
         [TestMethod]
         public void OrderConstructor_CreatesInstanceOfOrder_Order()
         {
-            Order newOrder = new Order("test category");
+            Order newOrder = new Order("test", "test");
             Assert.AreEqual(typeof(Order), newOrder.GetType());
         }
 
         [TestMethod]
-        public void GetName_ReturnsName_String()
+        public void GetOrderName_ReturnsOrderName_String()
         {
-            //Arrange
-            string name = "Test Order";
-            Order newOrder = new Order(name);
-
-            //Act
+            string name = "Pizza Hut";
+            Order newOrder = new Order(name, "test");
             string result = newOrder.Name;
-
-            //Assert
             Assert.AreEqual(name, result);
         }
 
         [TestMethod]
-        public void GetId_ReturnsOrderId_Int()
+        public void GetOrderDescription_ReturnsOrderDescription_String()
         {
-            //Arrange
-            string name = "Test Order";
-            Order newOrder = new Order(name);
-
-            //Act
-            int result = newOrder.Id;
-
-            //Assert
-            Assert.AreEqual(1, result);
+            string description = "Sells pizzas.";
+            Order newOrder = new Order("test", description);
+            string result = newOrder.Description;
+            Assert.AreEqual(description, result);
         }
 
         [TestMethod]
-        public void GetAll_ReturnsAllOrderObjects_OrderList()
+        public void SetDescription_SetDescription_String()
         {
             //Arrange
-            string name01 = "Bagel";
-            string name02 = "Bread";
-            Order newOrder1 = new Order(name01);
-            Order newOrder2 = new Order(name02);
-            List<Order> newList = new List<Order> { newOrder1, newOrder2};
+            string description = "Sells pizzas.";
+            Order newOrder = new Order("test", description);
+
+            //Act
+            string updatedDescription = "Sells salad.";
+            newOrder.Description = updatedDescription;
+            string result = newOrder.Description;
+
+            //Assert
+            Assert.AreEqual(updatedDescription, result);
+        }
+
+        [TestMethod]
+        public void SetName_SetName_String()
+        {
+            //Arrange
+            string name = "Sells pizzas.";
+            Order newOrder = new Order(name, "test");
+
+            //Act
+            string updatedName = "Tender Greens";
+            newOrder.Name = updatedName;
+            string result = newOrder.Name;
+
+            //Assert
+            Assert.AreEqual(updatedName, result);
+        }
+
+        [TestMethod]
+        public void GetAll_ReturnsEmptyList_OrderList()
+        {
+            //Arrange
+            List<Order> newList = new List<Order> { };
 
             //Act
             List<Order> result = Order.GetAll();
@@ -66,13 +84,47 @@ namespace VendorTracker.Tests
         }
 
         [TestMethod]
+        public void GetAll_ReturnsOrders_OrderList()
+        {
+            //Arrange
+            string description01 = "Serve Salad.";
+            string description02 = "Deliver Pizza.";
+            Order newOrder1 = new Order("Tender Greens", description01);
+            Order newOrder2 = new Order("Pizza Hut", description02);
+            List<Order> newList = new List<Order> { newOrder1, newOrder2};
+
+            //Act
+            List<Order> result = Order.GetAll();
+
+            //Assert
+            CollectionAssert.AreEqual(newList, result);
+        }
+        
+        [TestMethod]
+        public void GetId_OrderInstantiateWithAnIdAndGetterReturns_Int()
+        {
+            //Arrange
+            string name = "Tender Greens";
+            string description = "Serve Salad";
+            Order newOrder = new Order(name, description);
+
+            //Act
+            int result = newOrder.Id;
+
+            //Assert
+            Assert.AreEqual(1, result);
+        }
+
+        [TestMethod]
         public void Find_ReturnsCorrectOrder_Order()
         {
             //Arrange
-            string name01 = "Bagel";
-            string name02 = "Bread";
-            Order newOrder1 = new Order(name01);
-            Order newOrder2 = new Order(name02);
+            string name01 = "Tender Greens";
+            string name02 = "Pizza Hut";
+            string description01 = "Serve Salad.";
+            string description02 = "Deliver Pizza.";
+            Order newOrder1 = new Order(name01, description01);
+            Order newOrder2 = new Order(name02, description02);
 
             //Act
             Order result = Order.Find(2);
@@ -80,26 +132,5 @@ namespace VendorTracker.Tests
             //Assert
             Assert.AreEqual(newOrder2, result);
         }
-
-        [TestMethod]
-        public void AddVendor_AssociatesVendorWithOrder_VendorList()
-        {
-            //Arrange
-            string name = "Pizza Hut";
-            string description = "Sells Pizza";
-            Vendor newVendor = new Vendor(name, description);
-            List<Vendor> newList = new List<Vendor> { newVendor };
-            string orderName = "Bread";
-            Order newOrder = new Order(orderName);
-            newOrder.AddVendor(newVendor);
-
-
-            //Act
-            List<Vendor> result = newOrder.Vendors;
-
-            //Assert
-            CollectionAssert.AreEqual(newList, result);
-        }
-
     }
 }
