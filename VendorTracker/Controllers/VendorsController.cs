@@ -21,9 +21,9 @@ namespace VendorTracker.Controllers
     }
 
     [HttpPost("/vendors")]
-    public ActionResult Create(string vendorName)
+    public ActionResult Create(string vendorName, string description)
     {
-        Vendor newVendor = new Vendor(vendorName);
+        Vendor newVendor = new Vendor(vendorName, description);
         return RedirectToAction("Index");
     }
 
